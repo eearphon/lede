@@ -15,8 +15,8 @@ jobs:
     - name: Checkout fork repository
       uses: actions/checkout@v3
       with:
-        repository: ${{ github.repository }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+        # 拉取整个历史记录以便合并
+        fetch-depth: 0
 
     - name: Set up Git
       run: |
@@ -33,4 +33,7 @@ jobs:
       run: |
         git checkout master
         git merge upstream/master --allow-unrelated-histories
-        git push origin master
+        # 如果自动合并失败，您可以在这里处理冲突
+
+    - name: Push changes to fork repository
+      run: git push origin master
