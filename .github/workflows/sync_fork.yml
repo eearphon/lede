@@ -33,7 +33,11 @@ jobs:
       run: |
         git checkout master
         git merge upstream/master --allow-unrelated-histories
-        # 如果自动合并失败，您可以在这里处理冲突
+
+    - name: List new commits
+      run: |
+        echo "New commits from upstream:"
+        git log --oneline HEAD..upstream/master
 
     - name: Push changes to fork repository
       run: git push origin master
