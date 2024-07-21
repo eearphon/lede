@@ -24,7 +24,7 @@ jobs:
         git config --global user.name "github-actions[bot]"
     - name: Load upstream commits
       run: |
-        git update-index --assume-unchanged ./src/master/resources/config.json
+        git update-index --assume-unchanged ./.github/workflows/auto_merge.yml
         git pull https://github.com/coolsnowwolf/lede.git --log --no-commit
     - name: Apply commit changes
       run: |
